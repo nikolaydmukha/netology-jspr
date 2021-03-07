@@ -12,8 +12,8 @@ import java.util.List;
 public class Connection implements Runnable {
     private Socket socket;
 
-    public Connection(Socket connection) {
-        this.socket = connection;
+    public Connection(Socket socket) {
+        this.socket = socket;
     }
 
     @Override

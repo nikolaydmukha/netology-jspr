@@ -8,17 +8,23 @@ import java.util.concurrent.Executors;
 
 public class JsprServer {
 
-    private ServerSocket serverSocket = null;
+    private ServerSocket serverSocket;
     private ExecutorService executorService = Executors.newFixedThreadPool(64);
 
     public void runServer(int port) {
+
         try {
-            serverSocket = new ServerSocket(port);
-            try (Socket socket = serverSocket.accept();) {
-                executorService.execute(new Connection(socket));
+            while (true) {
+                serverSocket = new ServerSocket(port);
+                try (Socket socket = serverSocket.accept();) {
+                    executorService.execute(new Connection(socket));
+                }
             }
         } catch (IOException exception) {
             exception.printStackTrace();
         }
     }
+//    public void addHandler(String method, String file, Handler handler){
+//
+//    }
 }
