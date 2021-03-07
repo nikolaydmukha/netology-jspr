@@ -7,7 +7,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class JsprServer {
-    private int port;
+
     private ServerSocket serverSocket = null;
     private ExecutorService executorService = Executors.newFixedThreadPool(64);
 
@@ -15,7 +15,7 @@ public class JsprServer {
         try {
             serverSocket = new ServerSocket(port);
             try (Socket socket = serverSocket.accept();) {
-                executorService.submit(new Connection(socket));
+                executorService.execute(new Connection(socket));
             }
         } catch (IOException exception) {
             exception.printStackTrace();
