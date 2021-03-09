@@ -14,13 +14,17 @@ public class JsprServer {
     public void runServer(int port) {
 
         try {
-            while (true) {
-                serverSocket = new ServerSocket(port);
-                try (Socket socket = serverSocket.accept();) {
-                    executorService.execute(new Connection(socket));
-                }
-            }
+            serverSocket = new ServerSocket(port);
         } catch (IOException exception) {
+            exception.printStackTrace();
+        }
+        try {
+            while (true) {
+                Socket socket = serverSocket.accept();
+                executorService.execute(new Connection(socket));
+            }
+        } catch (
+                IOException exception) {
             exception.printStackTrace();
         }
     }

@@ -19,6 +19,7 @@ public class Connection implements Runnable {
     @Override
     public void run() {
         final List<String> validPaths = List.of("/index.html", "/spring.svg", "/spring.png");
+
         while (true) {
             try (
                     final BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
