@@ -3,8 +3,8 @@
 В рамках изучения Java Core и изучения работы протокола HTTP вы использовали библиотеку HttpClient из
 состава [Apache HttpComponents](https://hc.apache.org).
 
-В состав данной библиотеки входит утилитный
-класс [URLEncodedUtils](http://hc.apache.org/httpcomponents-client-ga/httpclient/apidocs/org/apache/http/client/utils/URLEncodedUtils.html)
+В состав данной библиотеки входит утилитный класс 
+[URLEncodedUtils](http://hc.apache.org/httpcomponents-client-ga/httpclient/apidocs/org/apache/http/client/utils/URLEncodedUtils.html)
 , который и позволяет "парсить" Query String, извлекая параметры.
 
 Необходимо добавить в ваш сервер (из предыдущего ДЗ) функциональность обработки параметров запроса так, чтобы можно было
