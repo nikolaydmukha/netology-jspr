@@ -34,7 +34,7 @@ public class Connection implements Runnable {
                 }
 
                 Request request = new Request(parts[0], parts[1], parts[2]);
-                JsprServer.handlers.get(request.getMethod()).get(request.getPath()).handle(request, out);
+                JsprServer.handlers.get(request.getPath()).get(request.getMethod()).handle(request, out);
 
             } catch (IOException exception) {
                 exception.printStackTrace();

@@ -39,7 +39,7 @@ public class JsprServer {
 
     public void addHandler(String method, String file, Handler handler){
         HashMap <String, Handler> innerMap = new HashMap<>();
-        innerMap.put(file, handler);
-        handlers.put(method, innerMap);
+        innerMap.put(method, handler);
+        handlers.put(file, innerMap);
     }
 }
