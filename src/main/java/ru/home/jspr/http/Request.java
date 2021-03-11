@@ -10,11 +10,13 @@ import java.util.Map;
 public class Request {
     private String method;
     private String path;
+    private String queryString;
     private String protocol;
 
     public Request(String method, String path, String protocol) {
         this.method = method;
-        this.path = path;
+        this.path = path.substring(0, path.indexOf("?")).replace("/", "");
+        this.queryString = path.substring(path.indexOf("?") + 1);;
         this.protocol = protocol;
     }
 
@@ -26,13 +28,17 @@ public class Request {
         return path;
     }
 
+    public String getQueryString() {
+        return queryString;
+    }
+
     public String getProtocol() {
         return protocol;
     }
 
     public Map<String, String> parseQueryString (){
         Map<String, String> queryParams = new HashMap<>();
-        if (path != null && !path.isEmpty()) {
+        if (getQueryString() != null && !getQueryString().isEmpty()) {
             for (NameValuePair param : URLEncodedUtils.parse(path, StandardCharsets.UTF_8)) {
                 queryParams.put(param.getName(), param.getValue());
             }
