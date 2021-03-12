@@ -35,6 +35,8 @@ public class Connection implements Runnable {
                 }
 
                 Request request = new Request(parts[0], parts[1], parts[2]);
+                //Some query params
+                String paramValue = request.parseQueryString().get("PARAM_NAME");
                 JsprServer.handlers.get(request.getPath()).get(request.getMethod()).handle(request, out);
 
             } catch (IOException exception) {
