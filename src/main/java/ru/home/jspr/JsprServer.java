@@ -29,7 +29,7 @@ public class JsprServer {
         try {
             while (true) {
                 Socket socket = serverSocket.accept();
-                executorService.execute(new Connection(socket));
+                executorService.submit(new Connection(socket));
             }
         } catch (
                 IOException exception) {
