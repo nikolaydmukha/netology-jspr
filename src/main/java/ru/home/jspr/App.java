@@ -14,7 +14,7 @@ public class App {
     public static void main(String[] args) {
 
         AppConfig appConfig = AppConfig.getInstance();
-        JsprServer server = new JsprServer();
+        JsprServer server = new JsprServer(64);
 
         // добавление handler'ов (обработчиков)
         server.addHandler("GET", "/index.html", new Handler() {
