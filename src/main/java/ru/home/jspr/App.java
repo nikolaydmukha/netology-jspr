@@ -17,13 +17,13 @@ public class App {
         JsprServer server = new JsprServer();
 
         // добавление handler'ов (обработчиков)
-        server.addHandler("GET", "/messages", new Handler() {
+        server.addHandler("GET", "/index.html", new Handler() {
             public void handle(Request request, BufferedOutputStream responseStream) {
                 // TODO: handlers code
                 addHandlerProcessor(request, responseStream);
             }
         });
-        server.addHandler("POST", "/messages", new Handler() {
+        server.addHandler("POST", "/index.html", new Handler() {
             public void handle(Request request, BufferedOutputStream responseStream) {
                 // TODO: handlers code
                 addHandlerProcessor(request, responseStream);
