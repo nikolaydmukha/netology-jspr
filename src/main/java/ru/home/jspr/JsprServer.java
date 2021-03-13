@@ -14,15 +14,18 @@ import java.util.concurrent.Executors;
 public class JsprServer {
 
     private ServerSocket serverSocket;
-    private ExecutorService executorService = Executors.newFixedThreadPool(64);
+    private ExecutorService executorService;
     public static final List<String> validPaths = List.of("/index.html", "/spring.svg", "/spring.png");
     public static HashMap<String, HashMap<String, Handler>> handlers = new HashMap<>();
 
+    public JsprServer(int threads) {
+        this.executorService = Executors.newFixedThreadPool(threads);
+    }
 
     public void runServer(int port) {
 
-        try {
-            serverSocket = new ServerSocket(port);
+        try(ServerSocket serverSocket = new ServerSocket(port);) {
+
             while (true) {
                 Socket socket = serverSocket.accept();
                 executorService.submit(new Connection(socket));
