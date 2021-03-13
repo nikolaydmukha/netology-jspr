@@ -1,5 +1,6 @@
 package ru.home.jspr;
 
+import ru.home.jspr.http.Handler;
 import ru.home.jspr.http.Request;
 
 import java.io.BufferedOutputStream;
@@ -7,6 +8,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
+import java.util.HashMap;
 
 public class Connection implements Runnable {
     private Socket socket;
@@ -32,8 +34,7 @@ public class Connection implements Runnable {
                 }
 
                 Request request = new Request(parts[0], parts[1], parts[2]);
-                JsprServer.handlers.get(request.getPath()).get(request.getMethod()).handle(request, out);
-
+                JsprServer.handlers.get(request.getPath().concat(":").concat(request.getMethod())).get(request.getMethod()).handle(request, out);
             } catch (IOException exception) {
                 exception.printStackTrace();
             }

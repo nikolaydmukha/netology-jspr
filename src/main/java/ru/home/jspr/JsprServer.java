@@ -23,16 +23,11 @@ public class JsprServer {
 
         try {
             serverSocket = new ServerSocket(port);
-        } catch (IOException exception) {
-            exception.printStackTrace();
-        }
-        try {
             while (true) {
                 Socket socket = serverSocket.accept();
                 executorService.submit(new Connection(socket));
             }
-        } catch (
-                IOException exception) {
+        } catch (IOException exception) {
             exception.printStackTrace();
         }
     }
@@ -40,6 +35,6 @@ public class JsprServer {
     public void addHandler(String method, String file, Handler handler){
         HashMap <String, Handler> innerMap = new HashMap<>();
         innerMap.put(method, handler);
-        handlers.put(file, innerMap);
+        handlers.put(file.concat(":").concat(method), innerMap);
     }
 }
