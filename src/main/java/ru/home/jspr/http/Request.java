@@ -15,9 +15,23 @@ public class Request {
 
     public Request(String method, String path, String protocol) {
         this.method = method;
-        this.path = path.substring(0, path.indexOf("?")).replace("/", "");
-        this.queryString = path.substring(path.indexOf("?") + 1);;
+        this.path = prepareFoPathParam(path);
+        this.queryString = prepareQueryParams(path);
         this.protocol = protocol;
+
+    }
+    private String prepareFoPathParam(String path){
+        if(path.contains("?")){
+            return path.substring(0, path.indexOf("?")).replace("/", "");
+        }
+        return path;
+    }
+
+    private String prepareQueryParams(String path){
+        if(path.contains("?")){
+            return path.substring(path.indexOf("?") + 1);
+        }
+        return path;
     }
 
     public String getMethod() {

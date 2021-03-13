@@ -20,7 +20,6 @@ public class JsprServer {
 
 
     public void runServer(int port) {
-
         try {
             serverSocket = new ServerSocket(port);
             while (true) {
