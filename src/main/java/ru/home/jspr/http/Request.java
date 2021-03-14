@@ -17,9 +17,10 @@ public class Request {
     private String queryString;
     private String protocol;
     private Map<String, String> headers;
+    private Map<String, String> queryParams;
     private InputStream in;
 
-    private Request(String method, String path, String queryString, String protocol, Map<String, String> headers) {
+    private Request(String method, String path, String queryString, String protocol, Map<String, String> headers, Map<String, String> queryParams) {
         this.method = method;
         this.path = path;
         this.queryString = queryString;
@@ -32,7 +33,7 @@ public class Request {
         String method = null;
         String path = null;
         String protocol = null;
-        String queryParams = null;
+        String queryString = null;
         Map<String, String> headers = new HashMap<>();
         BufferedReader reader = new BufferedReader(new InputStreamReader(in));
         try {
@@ -46,7 +47,7 @@ public class Request {
             method = parts[0];
             path = prepareFoPathParam(parts[1]);
             protocol = parts[2];
-            queryParams = prepareQueryParams(parts[1]);
+            queryString = prepareQueryParams(parts[1]);
             String headerLine;
 
             while (!(headerLine = reader.readLine()).equals("")) {
@@ -59,7 +60,7 @@ public class Request {
             exception.printStackTrace();
         }
 
-        return new Request(method, path, queryParams, protocol, headers);
+        return new Request(method, path, queryString, protocol, headers, parseQueryString(queryString, path));
     }
 
     private static String prepareFoPathParam(String path) {
@@ -92,13 +93,13 @@ public class Request {
         return protocol;
     }
 
-    public Map<String, String> parseQueryString() {
+    public static Map<String, String> parseQueryString(String queryString, String path) {
         Map<String, String> queryParams = new HashMap<>();
-        if (getQueryString() != null && !getQueryString().isEmpty()) {
+        //if (getQueryString() != null && !getQueryString().isEmpty()) {
             for (NameValuePair param : URLEncodedUtils.parse(path, StandardCharsets.UTF_8)) {
                 queryParams.put(param.getName(), param.getValue());
             }
-        }
+        //}
         return queryParams;
     }
 }

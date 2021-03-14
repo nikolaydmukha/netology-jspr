@@ -1,7 +1,6 @@
 package ru.home.jspr;
 
 
-import ru.home.jspr.http.Handler;
 import ru.home.jspr.http.Request;
 
 import java.io.BufferedOutputStream;
