@@ -46,3 +46,5 @@ captures/
 
 ### Gradle ###
 !gradle/wrapper/gradle-wrapper.jar
+/target/classes/ru/home/jspr/App$2.class
+/target/classes/ru/home/jspr/App$1.class
