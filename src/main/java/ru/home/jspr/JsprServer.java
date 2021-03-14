@@ -15,7 +15,7 @@ public class JsprServer {
 
     private ServerSocket serverSocket;
     private ExecutorService executorService;
-    public static final List<String> validPaths = List.of("/index.html", "/spring.svg", "/spring.png");
+    public static final List<String> validPaths = List.of("/index.html", "/spring.svg", "/spring.png", "/thread.html");
     public static HashMap<String, HashMap<String, Handler>> handlers = new HashMap<>();
 
     public JsprServer(int threads) {
