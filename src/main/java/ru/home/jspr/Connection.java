@@ -34,13 +34,9 @@ public class Connection implements Runnable {
 
                 Request request = new Request(parts[0], parts[1], parts[2]);
                 //Some query params
-//                String paramValue = request.parseQueryString().get("PARAM_NAME");
-                if (request.getPath().equals("/thread.html")) {
-                    Thread.sleep(6000);
-                }
                 JsprServer.handlers.get(request.getPath().concat(":").concat(request.getMethod())).get(request.getMethod()).handle(request, out);
             }
-        } catch (IOException | InterruptedException exception) {
+        } catch (IOException exception) {
             System.out.println("2 " + exception.getMessage());
         }
     }

@@ -26,6 +26,11 @@ public class App {
         server.addHandler("GET", "/thread.html", new Handler() {
             public void handle(Request request, BufferedOutputStream responseStream) {
                 // TODO: handlers code
+                try{
+                    Thread.sleep(3000);
+                }catch (InterruptedException ex){
+                    ex.printStackTrace();
+                }
                 addHandlerProcessor(request, responseStream);
             }
         });
