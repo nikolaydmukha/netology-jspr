@@ -23,15 +23,12 @@ public class JsprServer {
 
     public void runServer(int port) {
         try(ServerSocket serverSocket = new ServerSocket(port);) {
-            System.out.println(serverSocket.isClosed());
             while (true) {
                 Socket socket = serverSocket.accept();
-                System.out.println(socket.isClosed());
                 executorService.submit(new Connection(socket));
-                System.out.println(socket.isClosed());
             }
         } catch (IOException exception) {
-            System.out.println("1 " + exception.getMessage());
+            exception.printStackTrace();
         }
     }
 
