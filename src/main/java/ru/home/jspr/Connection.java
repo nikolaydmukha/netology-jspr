@@ -19,12 +19,12 @@ public class Connection implements Runnable {
 
     @Override
     public void run() {
+        try (
+                final BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                final BufferedOutputStream out = new BufferedOutputStream(socket.getOutputStream());
+        ) {
+            while (true) {
 
-        while (true) {
-            try (
-                    final BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                    final BufferedOutputStream out = new BufferedOutputStream(socket.getOutputStream());
-            ) {
                 final String requestLine = in.readLine();
                 final String[] parts = requestLine.split(" ");
 
@@ -35,9 +35,10 @@ public class Connection implements Runnable {
 
                 Request request = new Request(parts[0], parts[1], parts[2]);
                 JsprServer.handlers.get(request.getPath().concat(":").concat(request.getMethod())).get(request.getMethod()).handle(request, out);
-            } catch (IOException exception) {
+            }
+        }catch (IOException exception) {
                 exception.printStackTrace();
             }
         }
     }
-}
+

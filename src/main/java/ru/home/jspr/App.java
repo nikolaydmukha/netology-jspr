@@ -46,7 +46,7 @@ public class App {
 
             final Path filePath = Path.of(".", "public", request.getPath());
             final String mimeType = Files.probeContentType((filePath));
-            System.out.println(filePath);
+
             final long length = Files.size(filePath);
             responseStream.write((
                     "HTTP/1.1 200 OK\r\n" +
@@ -58,7 +58,7 @@ public class App {
             Files.copy(filePath, responseStream);
             responseStream.flush();
         }catch (IOException ex){
-            System.out.println(ex.getMessage());
+            ex.printStackTrace();
         }
     }
 }
