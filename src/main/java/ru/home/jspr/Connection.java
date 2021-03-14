@@ -9,20 +9,20 @@ import java.io.InputStreamReader;
 import java.net.Socket;
 
 
-
 public class Connection implements Runnable {
-    private Socket socket;
+    private final Socket socket;
 
     public Connection(Socket socket) {
         this.socket = socket;
+        System.out.println(socket.isClosed());
     }
 
     @Override
     public void run() {
         while (true) {
-            try (
-                    final BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                    final BufferedOutputStream out = new BufferedOutputStream(socket.getOutputStream());
+            try (socket;
+                 final BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                 final BufferedOutputStream out = new BufferedOutputStream(socket.getOutputStream());
             ) {
                 final String requestLine = in.readLine();
                 final String[] parts = requestLine.split(" ");
@@ -35,9 +35,12 @@ public class Connection implements Runnable {
                 Request request = new Request(parts[0], parts[1], parts[2]);
                 //Some query params
 //                String paramValue = request.parseQueryString().get("PARAM_NAME");
+                if (request.getPath().equals("/thread.html")) {
+                    Thread.sleep(6000);
+                }
                 JsprServer.handlers.get(request.getPath().concat(":").concat(request.getMethod())).get(request.getMethod()).handle(request, out);
-            } catch (IOException exception) {
-                exception.printStackTrace();
+            } catch (IOException | InterruptedException exception) {
+                System.out.println("2 " + exception.getMessage());
             }
         }
     }

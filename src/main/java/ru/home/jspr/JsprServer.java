@@ -13,9 +13,8 @@ import java.util.concurrent.Executors;
 
 public class JsprServer {
 
-    private ServerSocket serverSocket;
     private ExecutorService executorService;
-    public static final List<String> validPaths = List.of("/index.html", "/spring.svg", "/spring.png");
+    public static final List<String> validPaths = List.of("/index.html", "/spring.svg", "/spring.png", "/thread.html");
     public static HashMap<String, HashMap<String, Handler>> handlers = new HashMap<>();
 
     public JsprServer(int threads) {
@@ -24,12 +23,15 @@ public class JsprServer {
 
     public void runServer(int port) {
         try(ServerSocket serverSocket = new ServerSocket(port);) {
+            System.out.println(serverSocket.isClosed());
             while (true) {
                 Socket socket = serverSocket.accept();
+                System.out.println(socket.isClosed());
                 executorService.submit(new Connection(socket));
+                System.out.println(socket.isClosed());
             }
         } catch (IOException exception) {
-            exception.printStackTrace();
+            System.out.println("1 " + exception.getMessage());
         }
     }
 

@@ -23,13 +23,24 @@ public class App {
                 addHandlerProcessor(request, responseStream);
             }
         });
+        server.addHandler("GET", "/thread.html", new Handler() {
+            public void handle(Request request, BufferedOutputStream responseStream) {
+                // TODO: handlers code
+                addHandlerProcessor(request, responseStream);
+            }
+        });
         server.addHandler("POST", "/index.html", new Handler() {
             public void handle(Request request, BufferedOutputStream responseStream) {
                 // TODO: handlers code
                 addHandlerProcessor(request, responseStream);
             }
         });
-
+        server.addHandler("POST", "/thread.html", new Handler() {
+            public void handle(Request request, BufferedOutputStream responseStream) {
+                // TODO: handlers code
+                addHandlerProcessor(request, responseStream);
+            }
+        });
         server.runServer((appConfig.getPort()));
     }
     private static void addHandlerProcessor(Request request, BufferedOutputStream responseStream){
