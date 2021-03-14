@@ -27,7 +27,7 @@ public class App {
             public void handle(Request request, BufferedOutputStream responseStream) {
                 // TODO: handlers code
                 try{
-                    Thread.sleep(8000);
+                    Thread.sleep(3000);
                 }catch (InterruptedException ex){
                     ex.printStackTrace();
                 }
