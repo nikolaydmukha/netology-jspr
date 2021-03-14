@@ -23,6 +23,17 @@ public class App {
                 addHandlerProcessor(request, responseStream);
             }
         });
+        server.addHandler("GET", "/thread.html", new Handler() {
+            public void handle(Request request, BufferedOutputStream responseStream) {
+                // TODO: handlers code
+                try{
+                    Thread.sleep(8000);
+                }catch (InterruptedException ex){
+                    ex.printStackTrace();
+                }
+                addHandlerProcessor(request, responseStream);
+            }
+        });
         server.addHandler("POST", "/index.html", new Handler() {
             public void handle(Request request, BufferedOutputStream responseStream) {
                 // TODO: handlers code
