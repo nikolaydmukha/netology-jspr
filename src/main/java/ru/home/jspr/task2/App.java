@@ -1,8 +1,5 @@
 package ru.home.jspr.task2;
 
-
-
-
 import ru.home.jspr.task2.http.Request;
 
 import java.io.BufferedOutputStream;
