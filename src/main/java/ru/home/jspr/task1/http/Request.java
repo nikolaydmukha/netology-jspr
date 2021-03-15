@@ -1,4 +1,4 @@
-package ru.home.jspr.http;
+package ru.home.jspr.task1.http;
 
 public class Request {
     private String method;

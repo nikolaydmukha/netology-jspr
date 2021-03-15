@@ -1,4 +1,4 @@
-package ru.home.jspr;
+package ru.home.jspr.task1;
 
 import java.io.IOException;
 import java.io.InputStream;

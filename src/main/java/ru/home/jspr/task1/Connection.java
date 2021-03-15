@@ -1,6 +1,6 @@
-package ru.home.jspr;
+package ru.home.jspr.task1;
 
-import ru.home.jspr.http.Request;
+import ru.home.jspr.task1.http.Request;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;

@@ -1,6 +1,6 @@
-package ru.home.jspr;
+package ru.home.jspr.task1;
 
-import ru.home.jspr.http.Handler;
+import ru.home.jspr.task1.http.Handler;
 
 import java.io.IOException;
 import java.net.ServerSocket;
