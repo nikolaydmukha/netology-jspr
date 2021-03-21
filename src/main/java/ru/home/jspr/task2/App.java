@@ -14,7 +14,7 @@ public class App {
         AppConfig appConfig = AppConfig.getInstance();
         JsprServer server = new JsprServer(64);
 
-        // добавление GET handler'ов (обработчиков)
+        // добавление GET handler'ов
         server.addHandler("GET", "/index.html", (request, responseStream) -> {
             // TODO: handlers code
             addHandlerProcessor(request, responseStream);
@@ -29,7 +29,7 @@ public class App {
             addHandlerProcessor(request, responseStream);
         });
 
-        // добавление POST handler'ов (обработчиков)
+        // добавление POST handler'ов
         server.addHandler("POST", "/index.html", (request, responseStream) -> {
             // TODO: handlers code
             addHandlerProcessor(request, responseStream);
